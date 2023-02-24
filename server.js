@@ -1,11 +1,21 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
-const https = require("https");
-const fs = require("fs");
+// const https = require("https");
+// const fs = require("fs");
 const PORT = 3000;
 
 const app = express();
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+  next();
+});
 
 app.use(express.json());
 app.use(cors());

@@ -21,8 +21,8 @@ app.use(cors());
 
 const db = mysql.createConnection({
   user: "root",
-  host: "hospital-3.c8yzldilma0u.ap-southeast-1.rds.amazonaws.com",
-  // host: "localhost",
+  // host: "hospital-3.c8yzldilma0u.ap-southeast-1.rds.amazonaws.com",
+  host: "localhost",
   password: "password",
   database: "LoginSystem",
 });
@@ -172,10 +172,10 @@ app.post("/api/updatepassword", async (req, res) => {
         res.send({ err: err });
       }
 
-      if (result.length > 0) {
-        res.send(result);
-      } else {
+      if (id === null) {
         res.send({ message: "Something went wrong" });
+      } else {
+        res.send(result);
       }
     }
   );

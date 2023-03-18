@@ -175,7 +175,7 @@ app.post("/api/updatepassword", async (req, res) => {
       if (result.length > 0) {
         res.send(result);
       } else {
-        res.send({ message: "Email not found" });
+        res.send({ message: "Something went wrong" });
       }
     }
   );

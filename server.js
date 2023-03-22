@@ -21,8 +21,8 @@ app.use(cors());
 
 const db = mysql.createConnection({
   user: "root",
-  // host: "hospital-3.c8yzldilma0u.ap-southeast-1.rds.amazonaws.com",
-  host: "localhost",
+  host: "hospital-3.c8yzldilma0u.ap-southeast-1.rds.amazonaws.com",
+  // host: "localhost",
   password: "password",
   database: "LoginSystem",
 });
@@ -167,6 +167,29 @@ app.post("/api/updatepassword", async (req, res) => {
   db.query(
     "UPDATE `LoginSystem`.`users` SET `u_password` = ? WHERE (`u_id` = ?);",
     [password, id],
+    (err, result) => {
+      if (err) {
+        res.send({ err: err });
+      }
+
+      if (id === null) {
+        res.send({ message: "Something went wrong" });
+      } else {
+        res.send(result);
+      }
+    }
+  );
+});
+
+// update profile
+app.post("/api/updateprofile", async (req, res) => {
+  const id = req.body.id;
+  const title = req.body.title;
+  const qualification = req.body.qualification;
+
+  db.query(
+    "UPDATE `LoginSystem`.`users` SET `u_title` = ?, `u_qualification`= ? WHERE (`u_id` = ?);",
+    [title, qualification, id],
     (err, result) => {
       if (err) {
         res.send({ err: err });

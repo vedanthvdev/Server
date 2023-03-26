@@ -20,10 +20,10 @@ app.use(express.json());
 app.use(cors());
 
 const db = mysql.createConnection({
-  user: "root",
+  user: process.env.DB_USERNAME,
   host: "hospital-3.c8yzldilma0u.ap-southeast-1.rds.amazonaws.com",
   // host: "localhost",
-  password: "password",
+  password: process.env.DB_PASSWORD,
   database: "LoginSystem",
 });
 

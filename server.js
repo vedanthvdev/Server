@@ -235,7 +235,6 @@ app.post("/api/deletejob", (req, res) => {
       if (err) {
         console.log(err);
         res.status(500).send({ error: "Unable to fetch jobs" });
-        return;
       }
     }
   );

@@ -26,7 +26,7 @@ app.use(cors());
 
 const db = mysql.createConnection({
   user: process.env.DB_USERNAME,
-  host: "hospital-jobs4.c8yzldilma0u.ap-southeast-1.rds.amazonaws.com",
+  host: "hospital-jobs5.c8yzldilma0u.ap-southeast-1.rds.amazonaws.com",
   // host: "localhost",
   password: process.env.DB_PASSWORD,
   database: "LoginSystem",

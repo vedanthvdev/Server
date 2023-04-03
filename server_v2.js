@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const bcrypt = require("bcrypt");
-const PORT = 3002;
+const PORT = 3000;
 
 const { createClient } = require("@supabase/supabase-js");
 
@@ -173,23 +173,29 @@ app.post("/api/getuser", async (req, res) => {
 app.post("/api/forgotpassword", async (req, res) => {
   const email = req.body.email;
 
-  const { data, error } = await supabase.auth.api.resetPasswordForEmail(email);
+  const { data, error } = await supabase
+    .from("users")
+    .select("*")
+    .eq("u_email", email);
 
-  if (error) {
-    res.send({ error: error.message });
+  if (data.length == 0) {
+    res.send({ message: "Email not found" });
   } else {
-    res.send({ data });
+    res.send(data);
   }
 });
 
 // update password
 app.post("/api/updatepassword", async (req, res) => {
-  const newPassword = req.body.password;
+  const newPassword = await hashPassword(req.body.password);
   const userId = req.body.id;
 
-  const { error } = await supabase.auth.api.updateUser(userId, {
-    password: newPassword,
-  });
+  const { error } = await supabase
+    .from("users")
+    .update({
+      u_password: newPassword,
+    })
+    .eq("u_id", userId);
 
   if (error) {
     res.send({ error: error.message });

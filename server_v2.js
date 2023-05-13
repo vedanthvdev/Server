@@ -227,14 +227,14 @@ app.post("/api/updateprofile", async (req, res) => {
 
 // update click
 app.post("/api/updateclick", async (req, res) => {
-  const userId = req.body.id;
+  const jobId = req.body.id;
 
   const { data, error } = await supabase
     .from("users")
     .update({
-      j_title: ++1,
+      j_click: ++1,
     })
-    .eq("j_u_id", userId);
+    .eq("j_id", jobId);
 
   if (error) {
     res.send({ error: error.message });

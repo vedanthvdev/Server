@@ -230,9 +230,9 @@ app.post("/api/updateclick", async (req, res) => {
   const jobId = req.body.id;
 
   const { data, error } = await supabase
-    .from("users")
+    .from("jobs")
     .update({
-      j_click: ++1,
+      j_click: supabase.sql("j_click + 1"),
     })
     .eq("j_id", jobId);
 

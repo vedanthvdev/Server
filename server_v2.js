@@ -225,6 +225,24 @@ app.post("/api/updateprofile", async (req, res) => {
   }
 });
 
+// update click
+app.post("/api/updateclick", async (req, res) => {
+  const userId = req.body.id;
+
+  const { data, error } = await supabase
+    .from("users")
+    .update({
+      j_title: ++1,
+    })
+    .eq("j_u_id", userId);
+
+  if (error) {
+    res.send({ error: error.message });
+  } else {
+    res.send({ message: "click ++" });
+  }
+});
+
 // Get all user uploaded jobs
 app.post("/api/getuseruploadedjobs", async (req, res) => {
   const userId = req.body.userId;

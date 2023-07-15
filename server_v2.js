@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const bcrypt = require("bcrypt");
-const PORT = 3000;
+const PORT = 3001;
 
 const { createClient } = require("@supabase/supabase-js");
 
@@ -98,7 +98,7 @@ app.post("/api/registerjob", async (req, res) => {
 });
 
 // Authenticate user
-app.get("/api/authenticate", (req, res) => {
+app.post("/api/authenticate", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
@@ -107,6 +107,7 @@ app.get("/api/authenticate", (req, res) => {
     .select("*")
     .eq("u_email", email)
     .then((result) => {
+      console.log(result.data);
       if (result.error) {
         res.send({ error: result.error });
       } else if (result.data.length > 0) {

@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const bcrypt = require("bcrypt");
-const PORT = 3001;
+const PORT = 3002;
 
 const { createClient } = require("@supabase/supabase-js");
 
@@ -128,7 +128,7 @@ app.post("/api/authenticate", (req, res) => {
 });
 
 // Check if email is already registered
-app.get("/api/emailalreadyregistered", async (req, res) => {
+app.post("/api/emailalreadyregistered", async (req, res) => {
   const email = req.body.email;
 
   const { data, error } = await supabase
@@ -149,7 +149,7 @@ app.get("/api/emailalreadyregistered", async (req, res) => {
 });
 
 // Get User Details
-app.get("/api/getuser", async (req, res) => {
+app.post("/api/getuser", async (req, res) => {
   const id = req.body.id;
 
   try {
@@ -247,7 +247,7 @@ app.post("/api/updateclick", async (req, res) => {
 });
 
 // Get all user uploaded jobs
-app.get("/api/getuseruploadedjobs", async (req, res) => {
+app.post("/api/getuseruploadedjobs", async (req, res) => {
   const userId = req.body.userId;
   try {
     const { data, error } = await supabase

@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const bcrypt = require("bcrypt");
-const PORT = 3002;
+const PORT = 3000;
 
 const { createClient } = require("@supabase/supabase-js");
 

@@ -98,7 +98,7 @@ app.post("/api/registerjob", async (req, res) => {
 });
 
 // Authenticate user
-app.post("/api/authenticate", (req, res) => {
+app.get("/api/authenticate", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
@@ -127,7 +127,7 @@ app.post("/api/authenticate", (req, res) => {
 });
 
 // Check if email is already registered
-app.post("/api/emailalreadyregistered", async (req, res) => {
+app.get("/api/emailalreadyregistered", async (req, res) => {
   const email = req.body.email;
 
   const { data, error } = await supabase
@@ -148,7 +148,7 @@ app.post("/api/emailalreadyregistered", async (req, res) => {
 });
 
 // Get User Details
-app.post("/api/getuser", async (req, res) => {
+app.get("/api/getuser", async (req, res) => {
   const id = req.body.id;
 
   try {
@@ -246,7 +246,7 @@ app.post("/api/updateclick", async (req, res) => {
 });
 
 // Get all user uploaded jobs
-app.post("/api/getuseruploadedjobs", async (req, res) => {
+app.get("/api/getuseruploadedjobs", async (req, res) => {
   const userId = req.body.userId;
   try {
     const { data, error } = await supabase

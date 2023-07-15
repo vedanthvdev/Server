@@ -107,7 +107,6 @@ app.post("/api/authenticate", (req, res) => {
     .select("*")
     .eq("u_email", email)
     .then((result) => {
-      console.log(result.data);
       if (result.error) {
         res.send({ error: result.error });
       } else if (result.data.length > 0) {

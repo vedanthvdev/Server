@@ -62,6 +62,8 @@ app.post("/api/signup", async (req, res) => {
     res.status(500).send({ error: "Unable to create user" });
     return;
   }
+
+  res.status(201).send({ message: "User created successfully" });
 });
 
 // Register a job
@@ -92,9 +94,11 @@ app.post("/api/registerjob", async (req, res) => {
 
   if (error) {
     console.log(error);
-    res.status(500).send({ error: "Unable to create user" });
+    res.status(500).send({ error: "Unable to register job" });
     return;
   }
+
+  res.status(201).send({ message: "Job registered successfully" });
 });
 
 // Authenticate user
@@ -326,6 +330,10 @@ app.get("/api/getrecentjobs", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log("Server running on port - " + PORT);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log("Server running on port - " + PORT);
+  });
+}
+
+module.exports = app;

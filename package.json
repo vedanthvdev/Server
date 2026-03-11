@@ -2,11 +2,14 @@
   "name": "server",
   "version": "1.0.0",
   "description": "Backend server for ihospitaljobs.com",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "jest --forceExit --detectOpenHandles",
-    "start": "node server",
-    "dev": "nodemon server"
+    "test:unit": "jest --forceExit --detectOpenHandles --selectProjects unit",
+    "test:integration": "jest --forceExit --detectOpenHandles --selectProjects integration",
+    "test:e2e": "jest --forceExit --detectOpenHandles --selectProjects e2e",
+    "start": "node src/server",
+    "dev": "nodemon src/server"
   },
   "keywords": [],
   "author": "",
